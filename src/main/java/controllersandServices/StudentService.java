@@ -136,5 +136,52 @@ public class StudentService {
 
         return studentRepository.getLastFiveStudents();
     }
+
+    public void printNonSync(){
+        var students = student.Repository.findAll();
+        System.out.println(students.get(0));
+        System.out.println(students.get(1));
+
+        Thread t1 = new Thread(() -> {
+            System.out.println(students.get(2));
+            System.out.println(students.get(3));
+        });
+
+        t1.start();
+
+        Thread t2 = new Thread(() ->{
+            System.out.println(students.get(4));
+            System.out.println(students.get(5));
+        });
+
+        t2.start();
+    }
+
+    public void printSync(){
+        var students = student.Repository.findAll();
+        printSynchronized(students.get(0));
+        printSynchronized(students.get(1));
+
+        Thread t1 = new Thread(() -> {
+            printSynchronized(students.get(2));
+            printSynchronized(students.get(3));
+        });
+
+        t1.start();
+
+        Thread t2 = new Thread(() ->{
+            printSynchronized(students.get(4));
+            printSynchronized(students.get(5));
+        });
+
+        t2.start();
+
+    }
+
+    private synchronized void printSynchronized(Object o){
+        System.out.println(o.toString());
+    }
+
 }
+
 
