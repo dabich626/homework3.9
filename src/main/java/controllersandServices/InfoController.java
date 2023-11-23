@@ -28,6 +28,6 @@ public class InfoController {
         int a = integer.valueOf(5);
         int sum = Stream.iterate(1,a -> a + 1).limit(1_000_000).reduce(0,(a,b) -> a + b);
         logger.info("Elapsed: {}", System.currentTimeMillis() - startTime);
-        return sum;
+        return  sum;
     }
 }
