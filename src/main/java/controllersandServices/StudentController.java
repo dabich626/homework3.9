@@ -113,6 +113,11 @@ public class StudentController {
         return service.GetLastFiveStudents();
     }
 
+    @GetMapping ("/printNonSync")
+
+    public printNonSync(){
+        return studentService.printNonSync();
+    }
 
 }
 
